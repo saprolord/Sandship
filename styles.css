@@ -11,7 +11,7 @@ input[type=text],
 	}
 
 	button {
-    background-color: #10a049;
+    background-color: #df8e24;
 		color: white;
 		padding: 8px 2px;
 		margin: 0px;
@@ -22,7 +22,7 @@ input[type=text],
 	}
 
 	button:hover {
-    background: #37c971;
+    background: #e0af43;
     font-weight: bold;
 	}
 
@@ -34,7 +34,7 @@ input[type=text],
 
 .buttonStart{
   display:flex;
-  background-color: #10a049;
+  background-color: #df8e24;
   color: white;
   height: 30px;
   width: 40px;
@@ -48,7 +48,7 @@ input[type=text],
 
 .buttonMid{
   display:flex;
-  background-color: #10a049;
+  background-color: #df8e24;
   color: white;
   height: 30px;
   width: 40px;
@@ -62,7 +62,7 @@ input[type=text],
 
 .buttonEnd{
   display:flex;
-  background-color: #10a049;
+  background-color: #df8e24;
   color: white;
   height: 30px;
   width: 40px;
@@ -75,18 +75,18 @@ input[type=text],
 }
 
 .buttonStart:hover{
-  background: #37c971;
-  font-weight: bold;
+    background: #e0af43;
+    font-weight: bold;;
 }
 
 .buttonMid:hover{
-  background: #37c971;
-  font-weight: bold;
+    background: #e0af43;
+    font-weight: bold;
 }
 
 .buttonEnd:hover{
-  background: #37c971;
-  font-weight: bold;
+    background: #e0af43;
+    font-weight: bold;
 }
 
 .mainbox{
@@ -157,7 +157,7 @@ align-items: center;
 }
 
 .box3{
-display: none;
+display: flex;
 flex-direction: column;
 background: #f2f2f2;
 align-items: center;
@@ -195,7 +195,7 @@ justify-content: center;
 .headIco{
   max-width: 50px;
   max-height:50px;
-  border: 1px solid green
+  border: 2px solid rgb(109, 60, 5)
 }
 
 .treeBox{
@@ -246,7 +246,7 @@ justify-content: center;
   width:150px;
   height: 35px;
   border: 1px solid black;
-  background:  rgb(199, 226, 200);
+  background:  #df8e24;
   box-sizing: border-box;
 }
 
@@ -258,7 +258,7 @@ justify-content: center;
   height: 35px;
   border: 1px solid black;
   border-top: none;
-  background:  rgb(221, 211, 165);
+  background:  rgb(206, 191, 126);
   box-sizing: border-box;
   text-align: center;
 }
