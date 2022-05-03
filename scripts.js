@@ -7,7 +7,6 @@ function factorycalc() {
   'Extruder=5, Shaper=6, Mixer (Metal)=7, MechAss=8, Applier=9, Blower=10, Open Pipe=11'
   'ElecAss=12, Crusher=13, Grower=14, Compressor=15, Chemical Plant=16, Chemical Mixer=17'
 
-
   const substance = new MatDef("Substance", [0, 1], 0, [1],0);
   const iron = new MatDef("Iron Ore", [1, 30], [substance], [1], 1);
   const carbon = new MatDef("Carbon", [1, 30], [substance], [1], 2);
@@ -69,11 +68,11 @@ function factorycalc() {
   const water_bottle = new MatDef("Bottle: Water", [9, 2.5], [water, glass_bottle], [5, 1], 58);
   const sulf_acid_bottle = new MatDef("Bottle: Sulfuric Acid", [9, 2.5], [sulfuric_acid, glass_bottle], [5, 1], 59);
 
-  const black_ink = new MatDef("Carbon Black", [11, 2.5], [heavy_oil, carbon_powder], [1, 3], 200);
-  const white_ink = new MatDef("Titanium White", [11, 2.5], [heavy_oil, titanium_powder], [1, 3], 201);
-  const yellow_ink = new MatDef("Casablanca", [11, 2.5], [heavy_oil, sulfur_powder], [1, 3], 202);
-  const red_ink = new MatDef("Red Mercury", [11, 2.5], [heavy_oil, mercury_powder], [1, 3], 203);
-  const blue_ink = new MatDef("Summer Sky Blue", [11, 2.5], [heavy_oil, iron_powder], [1, 3], 204);
+  const black_ink = new MatDef("Carbon Black", [11, 2.5], [heavy_oil, carbon_powder], [1, 3], 65);
+  const white_ink = new MatDef("Titanium White", [11, 2.5], [heavy_oil, titanium_powder], [1, 3], 66);
+  const yellow_ink = new MatDef("Casablanca", [11, 2.5], [heavy_oil, sulfur_powder], [1, 3], 67);
+  const red_ink = new MatDef("Red Mercury", [11, 2.5], [heavy_oil, mercury_powder], [1, 3], 68);
+  const blue_ink = new MatDef("Summer Sky Blue", [11, 2.5], [heavy_oil, iron_powder], [1, 3], 69);
 
   const black_ink_bottle = new MatDef("Bottle: Carbon Black", [9, 2.5], [black_ink, glass_bottle], [5, 1], 60)
   const white_ink_bottle = new MatDef("Bottle: Titanium White", [9, 2.5], [white_ink, glass_bottle], [5, 1], 61)
@@ -95,6 +94,7 @@ function factorycalc() {
   nitrogen_tank, water_bottle, sulf_acid_bottle,black_ink_bottle, white_ink_bottle, 
   yellow_ink_bottle, red_ink_bottle, blue_ink_bottle, black_ink,white_ink, yellow_ink,
   red_ink, blue_ink];
+
   'Total required for each material array initialisation'
   materialtotal = [0];
   materialtotal.length = materialdata.length;
@@ -108,8 +108,10 @@ function factorycalc() {
 
    'Get the main div element where the tree will appear and clear it'
   var treeBox = document.getElementById('TreeTop');
-  erase('TreeTop');
-  erase('subBox3');
+  erase('TreeTop'); erase('substance'); erase('rawmat'); erase('intermediate');
+  document.getElementById('substance').innerHTML = "Substance required: </br>";
+  document.getElementById('rawmat').innerHTML = "Raw materials </br> required: ";
+  document.getElementById('intermediate').innerHTML = "Intermediary </br> materials:";
   'Create the first "treeBox" div element'
   createTreeLevel('TreeTop', 'tree10000');
 
@@ -133,7 +135,7 @@ function factorycalc() {
     document.getElementById("box3").style.width = "100%";
     "document.getElementById('box3').scrollIntoView()"
   } else {
-    document.getElementById("box3").style.width = "30%";
+    document.getElementById("box3").style.width = "66%";
   }
 'END'
 }
@@ -202,9 +204,8 @@ function findIcon(id) {
   if (id == 58) { return "https://raw.githubusercontent.com/saprolord/Sandship/main/image/Bottle_Water.png" };
   if (id == 59) { return "https://raw.githubusercontent.com/saprolord/Sandship/main/image/Bottle_Sulfuric_Acid.png" };
   if (id == 60) { return "https://raw.githubusercontent.com/saprolord/Sandship/main/image/Inks.png" };
-  if ((60 < id)  && (id< 100)) { return "https://raw.githubusercontent.com/saprolord/Sandship/main/image/Inks.png" };
-  if (100 <= id) { return "https://raw.githubusercontent.com/saprolord/Sandship/main/image/Ink_Fluid.png" };
-
+  if ((60 < id)  && (id< 65)) { return "https://raw.githubusercontent.com/saprolord/Sandship/main/image/Inks.png" };
+  if (65 <= id) { return "https://raw.githubusercontent.com/saprolord/Sandship/main/image/Ink_Fluid.png" };
 
 }
 
@@ -216,6 +217,9 @@ function zero(material) {
 }
 
 function calculate(material, rate, divParentId, boxId) {
+  //calculate the amount of materials required to produce 'material' at 'rate'
+  //'divParentId' is the div element () in which to display the result
+  //'boxId' is the serial number ID   
   var divParent = document.getElementById(divParentId);
   var matChildren = document.createElement('div');
   var treeLevel = document.createElement('div');
@@ -448,14 +452,14 @@ function createMatDetail(material, rate, factory, qty, divParentId, boxId, matId
   var icon = document.createElement('img');
   var parentDiv = document.getElementById(divParentId);
 
-  matDetail.id = boxId
+  matDetail.id = boxId;
   matDetail.setAttribute('class', 'matDetail');
 
   icon.setAttribute('class', 'ico');
   icon.src = findIcon(matId);
   icon.setAttribute('width', '20px');
   icon.setAttribute('height', '20px');
-  icon.setAttribute('alt', 'iron');
+  icon.setAttribute('alt', material.name);
 
   matName.setAttribute('class', 'matName');
   matName.innerHTML = material;
@@ -489,14 +493,21 @@ function createMatChildren(divParentId, boxId) {
 function collapse(childId) {
 
   //hide the div chilID if visible, unhide it if hidden.
+  resetButtonColours();
   if (document.getElementById('child' + childId).style.display == 'none') { showChild(childId) }
   else { hideChild(childId) }
 }
 
 function collapseRank(rank) {
   const allChild = document.getElementsByClassName('matChildren');
+  var buttonClicked  = document.getElementById('rank'+rank);
   var size = allChild.length;
   var tempStr = "";
+
+  //change colour of the button clicked on - reset all others
+  resetButtonColours();
+  buttonClicked.style.background ="#e0af43";
+
   for (i = 0; i < size; i++) {
     tempStr = allChild[i].id;
     if ((tempStr.substring(5, 6)) > rank) {
@@ -504,6 +515,19 @@ function collapseRank(rank) {
     } else {
       showChild(allChild[i].id.substring(5));
     }
+  }
+}
+
+function resetButtonColours(){
+  //reset all "Rank" buttons to default colour
+  const buttonStart=document.getElementsByClassName("buttonStart");
+  const buttonMid=document.getElementsByClassName("buttonMid");
+  const buttonEnd=document.getElementsByClassName("buttonEnd");
+
+  buttonStart[0].style.background ="#df8e24"
+  buttonEnd[0].style.background ="#df8e24"
+  for (i=0;i<buttonMid.length;i++){
+    buttonMid[i].style.background ="#df8e24"
   }
 }
 
@@ -526,7 +550,7 @@ function createTierButton() {
   const allChild = document.getElementsByClassName('matChildren');
   var size = allChild.length;
   var tempStr = "";
-  var rank = 0
+  var rank = 0;
 
   erase("buttonBox");
   for (i = 0; i < size; i++) {
@@ -560,13 +584,23 @@ function maxFactory() {
   document.getElementById("manufacturer").selectedIndex = "3";
 }
 
-
-
 function createMatOutputBox(i){
-  var parentDiv = document.getElementById("subBox3");
+  var parentDiv = document.getElementById("intermediate");
   var matDiv = document.createElement('div');
   var icon = document.createElement('img');
   var matqty = document.createElement('div');
+
+  //set the box to display the total in
+  //for substance
+  if (i==0){
+    parentDiv = document.getElementById("substance")
+  }else{
+  //for raw materials
+    if((i<8 && i!=4)||(i>39 && i<43)){
+      parentDiv = document.getElementById("rawmat")
+    }
+  }
+  //anything else is in the "intermediate" box 
 
   if (i<10){
     matDiv.id = "matDiv0" + i;
@@ -575,7 +609,7 @@ function createMatOutputBox(i){
     matDiv.id = "matDiv" + i;
     matqty.id = "mat" + i;
   }
-
+  {
     matDiv.setAttribute("class","matsum");
     matDiv.style.display="flex";
 
@@ -584,7 +618,8 @@ function createMatOutputBox(i){
     icon.setAttribute("max-width", "30px");
     icon.setAttribute("height", "auto");
     icon.setAttribute("float", "left");
-    icon.setAttribute("alt", materialdata.name);
+    icon.setAttribute("alt", materialdata[i].name);
+    icon.setAttribute("title", materialdata[i].name);
     
     matqty.setAttribute("class","ico");
     matqty.innerHTML=0;
@@ -592,6 +627,6 @@ function createMatOutputBox(i){
     matDiv.appendChild(icon);
     matDiv.appendChild(matqty);
     parentDiv.appendChild(matDiv);
-
+  }
 
 }
