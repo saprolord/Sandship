@@ -15,8 +15,8 @@
 
 <style>
 	body {
-		background-image: url("https://raw.githubusercontent.com/saprolord/Sandship/main/image/Background_3.jpg");
-		background-repeat: repeat;
+		background-image: url("https://raw.githubusercontent.com/saprolord/Sandship/main/image/Background_3a.png");
+		background-repeat: repeat-x;
 		background-size: 100%;
 	}
 </style>
@@ -26,12 +26,12 @@
 	<script src="scripts.js"></script>
 
 	<div style="display:flex; width:100%; border: 0px solid red; justify-content:center; align-items: center ">
-		<img src="https://raw.githubusercontent.com/saprolord/Sandship/main/image/Harvey.jpg" class="headIco" alt="ico">
+		<img src="https://raw.githubusercontent.com/saprolord/Sandship/main/image/Harvey.jpg" class="headIco" alt="ico" title="Harvey">
 		<div
 			style="text-align: center; margin-left: 0.5em; margin-right: 0.5em; font-family: Verdana; font-size: 1.1em; -webkit-text-stroke-width: 0.5px; -webkit-text-stroke-color: white; ">
 			<b>SANDSHIP CALCULATOR </b>
 		</div>
-		<img src="https://raw.githubusercontent.com/saprolord/Sandship/main/image/Harvey.jpg" class="headIco" alt="ico">
+		<img src="https://raw.githubusercontent.com/saprolord/Sandship/main/image/Harvey.jpg" class="headIco" alt="ico" title="Harvey" style="transform:ScaleX(-1)"> 
 </div>
 
 		<div class="mainbox" id="mainbox">
@@ -123,7 +123,15 @@
 			<div class="box3" id="box3">
 				<div> Total required </div>
 				<div id="subBox3" class="subbox3">
-				
+					<div class="box3direct">
+						<div id="substance" class="box3substance">
+							Substance required:
+						</div>
+						<div id="rawmat" class="box3rawmat">
+						</div>
+					</div>
+					<div id="intermediate" class="box3intermediate">
+					</div>
         </div>
       </div>
     </div>
