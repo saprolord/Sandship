@@ -452,7 +452,7 @@ function createMatDetail(material, rate, factory, qty, divParentId, boxId, matId
   var icon = document.createElement('img');
   var parentDiv = document.getElementById(divParentId);
 
-  matDetail.id = boxId;
+  matDetail.id = boxId
   matDetail.setAttribute('class', 'matDetail');
 
   icon.setAttribute('class', 'ico');
@@ -584,6 +584,7 @@ function maxFactory() {
   document.getElementById("manufacturer").selectedIndex = "3";
 }
 
+
 function createMatOutputBox(i){
   var parentDiv = document.getElementById("intermediate");
   var matDiv = document.createElement('div');
@@ -609,7 +610,7 @@ function createMatOutputBox(i){
     matDiv.id = "matDiv" + i;
     matqty.id = "mat" + i;
   }
-  {
+
     matDiv.setAttribute("class","matsum");
     matDiv.style.display="flex";
 
@@ -627,6 +628,6 @@ function createMatOutputBox(i){
     matDiv.appendChild(icon);
     matDiv.appendChild(matqty);
     parentDiv.appendChild(matDiv);
-  }
+
 
 }
