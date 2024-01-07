@@ -143,7 +143,7 @@ function factorycalc() {
 
 function findIcon(id) {
   //returns the url to the picture of the material identified by "id"
-  if (id == 0) { return "https://raw.githubusercontent.com/saprolord/Sandship/main/image/Substance_Fake.png" };
+  if (id == 0) { return "https://raw.githubusercontent.com/saprolord/Sandship/main/image/Substance.png" };
   if (id == 1) { return "https://raw.githubusercontent.com/saprolord/Sandship/main/image/Iron_Ore.png" };
   if (id == 2) { return "https://raw.githubusercontent.com/saprolord/Sandship/main/image/Carbon.png" };
   if (id == 3) { return "https://raw.githubusercontent.com/saprolord/Sandship/main/image/Copper.png" };
