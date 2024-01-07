@@ -29,7 +29,7 @@ function factorycalc() {
   const steel_spring = new MatDef("Steel Spring",[5,5],[steel_rod],[5/4],18);
   const glass_tube = new MatDef("Glass Tube",[10,5],[glass],[3],20);
   const glass_sphere = new MatDef("Glass Sphere",[10,5],[glass_tube],[3],21);
-  const glass_bottle = new MatDef("Glass Bottle",[10,5],[glass_tube],[2],22);
+  const glass_bottle = new MatDef("Glass Bottle",[10,5],[glass_sphere],[2],22);
   const iron_bolt = new MatDef("Iron Bolt",[6,1.33],[iron_rod],[2],23);
   const steel_gear = new MatDef("Steel Gear", [6,5],[steel_plate],[3/4],24);
   const steel_chain = new MatDef("Steel Chain",[8,5],[steel_rod],[3],25);
